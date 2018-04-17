@@ -104,7 +104,8 @@ function draw(){
 
       fill(51, 122, 183);
       text('Lifespan: ', width-200, 30);
-        rect(width-130, 20, calculateProgress((lifespan - count),40,lifespan), 5);
+      var totPro = map( count,0,lifespan,40,0)
+      rect(width-130, 20,totPro , 5);
 
       fill(91, 192, 222);
       text('Iteration: '+iteration, width-200, 150);
