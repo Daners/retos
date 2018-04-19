@@ -30,6 +30,8 @@ let rainbowns_data;
 let trains_data;
 let cats_data;
 
+  let testing = [];
+
 let rainbowns = {};
 let trains = {};
 let cats = {};
@@ -90,6 +92,7 @@ let correct=0;
     if(classification === label){
       correct++;
     }
+
   }
   let percent = 100*correct /testing.length;
   return percent;
@@ -110,7 +113,7 @@ function setup (){
   training =  training.concat(cats.training);
   training =  training.concat(rainbowns.training);
   training =  training.concat(trains.training);
-  let testing = [];
+
   testing =  testing.concat(cats.testing);
   testing =  testing.concat(rainbowns.testing);
   testing =  testing.concat(trains.testing);
@@ -121,18 +124,31 @@ let trainButton = select("#train");
 
 let epochCounter = 0;
 trainButton.mousePressed(()=>{
+document.getElementById("ithink").innerHTML = "Entrenando..."
+setTimeout(function () {
   trainEpoch(training);
   epochCounter++;
   console.log("Epoch: "+epochCounter);
+  document.getElementById("ithink").innerHTML = "Listo!"
+}, 100);
+
+
+
 });
 let testButton = select("#test");
 testButton.mousePressed(()=>{
     let percent = testAll(testing);
     console.log("Percent: "+nf(percent,2,2)+"%");
+      document.getElementById("percent").innerHTML = nf(percent,2,2)+"%"
 });
 let clearButton = select("#clear");
 clearButton.mousePressed(()=>{
   background(255);
+});
+
+let randomButton = select("#random");
+randomButton.mousePressed(()=>{
+  randomImage()
 });
 
 let guessButton = select("#guess");
@@ -153,9 +169,12 @@ guessButton.mousePressed(()=>{
 
   if (classification === CAT) {
     console.log("CAT");
+    document.getElementById("ithink").innerHTML = "Yo veo un Gato"
   }else if (classification === TRAIN) {
         console.log("TRAIN");
+        document.getElementById("ithink").innerHTML = "Yo veo un Tren"
   }else if (classification === RAINBOWN) {
+    document.getElementById("ithink").innerHTML = "Yo veo un Arcoiris"
         console.log("RAINBOWN");
   }
 });
@@ -172,7 +191,7 @@ guessButton.mousePressed(()=>{
 
 
   // let total = 100;
-  // for (let n = 0; n < total; n++) {
+  // for (let n = 0; n < 1; n++) {
   //   let img = createImage(28,28);
   //   img.loadPixels();
   //   let offset = n * 784;
@@ -186,15 +205,36 @@ guessButton.mousePressed(()=>{
   //   img.updatePixels();
   //   let x = (n %10) *28;
   //   let y = floor(n/10)*28;
+  //   img.resize(280,280);
+  //   img.loadPixels();
+  //   img.updatePixels();
   //   image(img,x,y);
+  //
   // }
 
 }
 
-function mouseDragged(){
-
+function randomImage(){
+  var index =   Math.floor(random(0,testing.length-1))
+  var data = testing[index];
+  let img = createImage(28,28);
+  img.loadPixels();
+  let offset = 0 * 784;
+  for (let j = 0;j < 784; j++) {
+    let val = 255-data[j+offset];
+    img.pixels[j*4 + 0] = val;
+    img.pixels[j*4 + 1] = val;
+    img.pixels[j*4 + 2] = val;
+    img.pixels[j*4 + 3] = 255;
+  }
+  img.updatePixels();
+  let x = (0 %10) *28;
+  let y = floor(0/10)*28;
+  img.resize(280,280);
+  img.loadPixels();
+  img.updatePixels();
+  image(img,x,y);
 }
-
 function draw(){
     strokeWeight(16);
     stroke(0);

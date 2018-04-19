@@ -10,10 +10,19 @@
       button{
         font-size: 15pt;
         margin: 10px;
-            margin-left: 10px;
+            margin-left: 5px;
+            background-color: white;
       }
       canvas{
         display: block;
+          margin-left: 50px;
+      }
+
+      span{
+        display: block;
+        font-size: 16pt;
+        color: white;
+          margin-left: 50px;
       }
     </style>
     <script src="../public/js/p5.min.js"></script>
@@ -23,10 +32,14 @@
     <script src="./js/main.js"></script>
   </head>
   <body>
-      <button id="train">Train</button>
-      <button id="test">Test</button>
-        <button id="guess">Guess</button>
-          <button id="clear">Clear</button>
+      <button id="train">Entrenar</button>
+      <button id="test">Probar</button>
+        <button id="guess">Adivina</button>
+          <button id="clear">limpiar</button>
+            <button id="random">Random</button>
+
+          <span id="ithink">Que es?</span>
+            <span id="percent">0%</span>
   </body>
 
 </html>
