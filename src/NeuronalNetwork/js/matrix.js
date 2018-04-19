@@ -79,6 +79,23 @@ class Matrix{
     return result;
   }
 
+  multiply(n){
+    if(n instanceof Matrix){
+      for (var i = 0; i < this.rows; i++) {
+        for (let j = 0; j < this.cols; j++) {
+            this.data[i][j] *= n.data[i][j];
+        }
+      }
+    }else{
+      for (let i = 0; i < this.rows; i++) {
+        for (let j = 0; j < this.cols; j++) {
+            this.data[i][j] *= n;
+        }
+      }
+    }
+    return this;
+  }
+
   static multiply(a,b){
     if(a.cols !== b.rows){
       console.log('Las columnas A no corresponden a las filas B');
@@ -105,6 +122,18 @@ class Matrix{
         }
     }
     return this;
+  }
+
+  static map(matrix,func){
+      let result = new Matrix(matrix.rows,matrix.cols);
+
+      for (let i = 0; i < matrix.rows; i++) {
+          for (let j = 0; j < matrix.cols; j++) {
+            let val = matrix.data[i][j];
+              result.data[i][j] = func(val,i,j);
+          }
+      }
+      return result;
   }
 
   print(){

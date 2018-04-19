@@ -1,0 +1,23 @@
+{
+  "name": "retos",
+  "version": "1.0.0",
+  "description": "Machin Lerning",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daners/retos.git"
+  },
+  "author": "JD Espinosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Daners/retos/issues"
+  },
+  "homepage": "https://github.com/Daners/retos#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
