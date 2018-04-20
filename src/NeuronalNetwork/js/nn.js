@@ -1,10 +1,23 @@
 
 class NeuronalNetwork{
 
-  constructor(input_nodes,hidden_nodes,output_nodes){
-    this.input_nodes = input_nodes;
-    this.hidden_nodes =  hidden_nodes;
-    this.output_nodes = output_nodes;
+  constructor(a,b,c){
+
+    if (a instanceof NeuronalNetwork) {
+      this.input_nodes = a.input_nodes;
+      this.hidden_nodes = a.hidden_nodes;
+      this.output_nodes = a.output_nodes;
+
+      this.weight_ih = a.weight_ih.copy();
+      this.weight_ho = a.weight_ho.copy();
+
+      this.bias_h = a.bias_h.copy();
+      this.bias_o = a.bias_o.copy();
+      this.lerning_rate =0.1;
+    } else {
+    this.input_nodes = a;
+    this.hidden_nodes =  b;
+    this.output_nodes = c;
 
     this.weight_ih = new Matrix(this.hidden_nodes,this.input_nodes);
     this.weight_ho = new Matrix(this.output_nodes,this.hidden_nodes);
@@ -16,6 +29,7 @@ class NeuronalNetwork{
     this.bias_h.randomize();
     this.bias_o.randomize();
     this.lerning_rate =0.1;
+    }
 
   }
 
@@ -82,6 +96,18 @@ class NeuronalNetwork{
     // outputs.print();
     // targets.print();
     // error.print();
+  }
+
+  // Adding function for neuro-evolution
+  copy() {
+    return new NeuronalNetwork(this);
+  }
+  // Accept an arbitrary function for mutation
+  mutate(func) {
+    this.weight_ih.map(func);
+    this.weight_ho.map(func);
+    this.bias_h.map(func);
+    this.bias_o.map(func);
   }
 
   sigmoid(x){
