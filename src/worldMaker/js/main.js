@@ -30,8 +30,8 @@ var start = false;
 function setup (){
 
   createCanvas(
-    window.innerWidth-30,
-    window.innerHeight-30
+    window.innerWidth-2,
+    window.innerHeight
   );
 
 
@@ -97,7 +97,7 @@ function draw(){
 
       background(0);
       noStroke();
-
+if(start){
       fill(255  ,80);
       rect(width-220, 5, 150, 165,5);
       textSize(16);
@@ -118,12 +118,12 @@ function draw(){
       fill(240, 173, 78);
       text('Fitness: '+ round(bestFit), width-200, 120);
 
-
+}
 
         fill(0, 255, 0);
-        text('X: '+mouseX, mouseX, mouseY-20);
+        text('X: '+round(mouseX), mouseX, mouseY-20);
         fill(255);
-        text('Y: '+mouseY, mouseX, mouseY);
+        text('Y: '+round(mouseY), mouseX, mouseY);
 
       if(typeElm === "OBS"){
           rect(tempmx, tempmy, tempdragw, tempdragh);
@@ -255,7 +255,7 @@ return obs;
     this.rh = rh;
 
     this.show = function(){
-      fill(255)
+      fill(255,80)
       rect(this.rx,this.ry,  this.rw,  this.rh);
     }
   }

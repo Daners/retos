@@ -17,6 +17,8 @@ var traning_data =[
   }
 ]
 
+  let nn ;
+
 function setup(){
  // let a =  new Matrix(2,3);
  // a.randomize().add(1).print();
@@ -41,7 +43,7 @@ function setup(){
   console.table(b.data)*/
 
 
-  let nn = new NeuronalNetwork(2,2,1);
+ nn =new NeuronalNetwork(2,2,1);
   let inputs= [1,0];
   let target = [1];
 
