@@ -8,7 +8,7 @@ var tempdragh = 0;
 
 var tempmx = 0;
 var tempmy = 0;
-var typeElm = "OBS";
+var typeElm = "";
 var target;
 var startPoint;
 
@@ -27,12 +27,16 @@ var iteration = 1;
 var bestFit = 0;
 var start = false;
 
+let slider;
+
 function setup (){
+
 
   createCanvas(
     window.innerWidth-2,
     window.innerHeight
   );
+
 
 
   containerBtns = createDiv('');
@@ -89,11 +93,31 @@ function setup (){
       containerBtnsStop.hide();
 
    });
+   slider = createSlider(1,100,1)
 
+   slider.position(19, 80);
 
 }
 
 function draw(){
+
+  for (var n = 0; n < slider.value(); n++) {
+
+    if (start && startPoint && target) {
+      population.run();
+      count++;
+      if(count == lifespan){
+        //  population = new Population();
+          totalCrashed = 0;
+          totalComplete = 0;
+          iteration ++;
+         population.evaluate();
+         population.selection()
+        count = 0;
+      }
+    }
+  }
+
 
       background(0);
       noStroke();
@@ -176,19 +200,8 @@ if(start){
       }
 
       if (start && startPoint && target) {
-        population.run();
-        count++;
-        if(count == lifespan){
-          //  population = new Population();
-            totalCrashed = 0;
-            totalComplete = 0;
-            iteration ++;
-           population.evaluate();
-           population.selection()
-          count = 0;
-        }
+        population.show();
       }
-
 
 
 
@@ -319,11 +332,16 @@ return obs;
 
           this.rockets = newRockets;
       }
-
+      this.show =  function(){
+        for (var i = 0; i < this.popsize; i++) {
+            //this.rockets[i].update();
+              this.rockets[i].show();
+        }
+      }
       this.run =  function(){
         for (var i = 0; i < this.popsize; i++) {
             this.rockets[i].update();
-              this.rockets[i].show();
+            //  this.rockets[i].show();
         }
       }
   }
@@ -485,7 +503,7 @@ return obs;
       dragh = abs(tempdragh);
       my =  mouseY;
     }
-  return false;
+  return true;
   }
 
   function mousePressed() {
@@ -494,5 +512,5 @@ return obs;
     tempmx = mouseX;
     tempmy = mouseY;
 
-    return false;
+    return true;
   }
