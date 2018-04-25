@@ -21,7 +21,7 @@ class Cloud{
     }
 
     offscreen() {
-      if (this.x+60 < this.size) {
+      if (this.x+80 < this.size) {
         return true;
       } else {
         return false;
