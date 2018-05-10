@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/Daners/retos#readme",
   "dependencies": {
+    "brain.js": "^1.2.1",
     "express": "^4.16.3",
+    "matter-attractors": "^0.1.6",
+    "matter-js": "^0.14.1",
     "socket.io": "^2.1.0"
   }
 }

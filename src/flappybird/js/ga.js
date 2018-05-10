@@ -24,6 +24,18 @@ function pickOne(){
   let child = new Bird(bird.brain)
   return child;
 }
+
+function orderBirds(birds){
+var ordBirds = birds.sort(function(a,b){
+    return a.fitness -b.fitness
+  });
+
+  ordBirds[birds.length-1].col = color(0,255,255,100);
+
+  return ordBirds;
+
+
+}
   function calculateFitness(){
     let sum = 0;
     for (let bird of saveBirds) {
